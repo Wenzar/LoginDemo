@@ -1,0 +1,48 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Login Page";
+}
+<div class="container mt-5" style="max-width:400px">
+    <h3 class="text-center mb-4 text-sm">Sing In</h3>
+    <form method="post">
+        <div class="mb-3">
+            <label class="mb-1"><h6 class="mb-0 text-sm">Username</h6></label>
+            <input type="text" name="Login" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label class="mb-1"><h6 class="mb-0 text-sm">Password</h6></label>
+            <input type="password" name="Password" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Sing In</button>
+    </form>
+
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger") mt-3">
+            @Model.Message
+        </div>
+    }
+
+    @if (Model.IsSuccess && Model.EntityData != null)
+    {
+        <div class="card mt-4">
+            <div class="card-header bg-success text-white">
+                Entity Details
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-striped table-bordered mb-0">
+                    <tbody>
+                        <tr><th>Entity ID</th><td>@Model.EntityData.EntityId</td></tr>
+                        <tr><th>Name</th><td>@Model.EntityData.FirstName @Model.EntityData.LastName</td></tr>
+                        <tr><th>Email</th><td>@Model.EntityData.Email</td></tr>
+                        <tr><th>Mobile</th><td>@Model.EntityData.Mobile</td></tr>
+                        <tr><th>Country</th><td>@Model.EntityData.Country</td></tr>
+                        <tr><th>FTP Host</th><td>@Model.EntityData.FTPHost</td></tr>
+                        <tr><th>FTP Port</th><td>@Model.EntityData.FTPPort</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
